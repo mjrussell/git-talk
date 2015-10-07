@@ -2,7 +2,7 @@
 
 This slide deck uses [reveal-ck](http://github.com/jedcn/reveal-ck)
 
-After install reveal-ck, run `reveal-ck generate` to create the slides folder
+After installing `reveal-ck`, run `reveal-ck generate` to create the slides folder
 
 Serve the index.html your favorite way, for example: `open slides/index.html`
 
