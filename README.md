@@ -12,8 +12,9 @@ To edit the slides, run `reveal-ck server` and edit `slides.slim` and it will au
 
 ## Deploying to Github Pages
 
-`git checkout gh-pages`
-`git merge master`
-`reveal-ck generate`
-`git commit -m "Updating Github Pages"`
-`git subtree push --prefix slides origin gh-pages`
+```
+git checkout gh-pages
+git merge master
+reveal-ck generate
+git commit -m "Updating Github Pages"
+git subtree push --prefix slides origin gh-pages
