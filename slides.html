@@ -1,0 +1,282 @@
+<section>
+  <h1>
+    git
+  </h1>
+  <h2>
+    The Basics And Beyond
+  </h2>
+  <p>
+    by Matt Russell
+  </p>
+</section>
+<section>
+  <h2>
+    What is git?
+  </h2>
+  <p>
+    Created by Linus Torvalds for the Linux Kernel Source
+  </p>
+  <p>
+    Distributed Version Control Software
+  </p>
+  <p>
+    Snapshots vs Differences of file systems
+  </p>
+</section>
+<section>
+  <h2>
+    Why is Version Control Software (VCS) Important?
+  </h2>
+  <ol>
+    <li class="fragment">
+      Lifesaver if your code stops working
+    </li>
+    <li class="fragment">
+      Good version control history is a story of your software
+    </li>
+    <li class="fragment">
+      Github is "street cred" for programmers
+    </li>
+  </ol>
+  <aside class="notes">
+    it shows where it began, major milestones, and your thought
+    process as well as the collaboration with others
+  </aside>
+</section>
+<section>
+  <section>
+    <h2>
+      The Basics
+    </h2>
+    <img alt="Github Logo" height="400px" src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png">
+  </section>
+  <section>
+    <h2>
+      Commit
+    </h2>
+    <q>“A Snapshot in time of your directory”</q> 
+    <p>
+      Unique hashcode
+    </p>
+    <p>
+      One or more parent commits
+    </p>
+    <p>
+      Additional MetaData (Author, Date, etc)
+    </p>
+    <pre class="bash"><code>git commit -m "My First Commit"</code></pre>
+  </section>
+  <section>
+    <h2>
+      Commit Tree
+    </h2>
+    <img height="400px" src="http://www.ossxp.com/doc/gotgit-en/images/en/fig-11-22-commit-tree-bisect.png"> <pre class="bash"><code>git log --graph --all # shows a pretty graph with all branches</code></pre>
+  </section>
+  <section>
+    <h2>
+      Staging (Index)
+    </h2>
+    <q>“Where files go before they become a commit”</q> 
+    <p>
+      Move files to be staged (green) and un-staged (red)
+    </p>
+    <p>
+      Un-staged includes untracked files (files git doesn’t know about)
+    </p>
+    <pre class="bash"><code>git add newFile # add newFile to index (and track if not tracked)</code><code>git add -u # Add all currently tracked files</code><code>git add . # Add all files in directory (recursive)</code><code>git reset HEAD newFile # Remove newFile from the index</code></pre>
+  </section>
+  <section>
+    <h2>
+      Branches
+    </h2>
+    <p>
+      Reference a commit by a name
+    </p>
+    <p>
+      Branches move as you commit
+    </p>
+    <p>
+      Work separately on something until its ready
+    </p>
+    <ul>
+      <small>
+        <li>
+          bug fixes, features, etc. Read Gitflow!
+        </li>
+      </small>
+    </ul>
+    <p>
+      Tags are just branches that don't move!
+    </p>
+    <pre class="bash"><code>git branch -a # Display all branches</code><code>git checkout -b new-branch # Creates and checks out new-branch</code><code>git checkout bug-fix # Checkout bug-fix branch</code></pre>
+  </section>
+  <section>
+    <h2>
+      Remotes
+    </h2>
+    <p>
+      Up until now everything was local!
+    </p>
+    <p>
+      But we want to share our beautiful code with the world!
+    </p>
+    <p>
+      Can have unlimited remotes, usually just ‘origin'
+    </p>
+    <pre class="bash"><code>git remote add origin https://github.com/user/repo.git</code><code>git fetch # Fetches updates from remotes but doesn't apply</code><code>git push origin -u featureBranch # Pushes a new featureBranch and tracks changes</code><code>git pull origin # Tries to update the current branch (merge by default)</code></pre>
+  </section>
+</section>
+<section>
+  <section>
+    <h2>
+      Rebase vs Merge
+    </h2>
+    <img class="fragment" height="400px" src="http://www.quickmeme.com/img/5a/5ad6c8f9897f923139508114de14254e39448111a2df182724814d9322721861.jpg">
+  </section>
+  <section>
+    <h2>
+      Merge
+    </h2>
+    <p>
+      Create a new commit from two parents and merge the files
+    </p>
+    <p>
+      Very useful when adding a new feature
+    </p>
+    <p>
+      Clear point at which it was added (github Pull Requests)
+    </p>
+    <p>
+      Noisy when overused
+    </p>
+    <pre class="bash"><code>git merge bug-fix # Merges branch 'bug-fix' into the current branch</code><code>git merge bug-fix --no-ff # No fast forward merges to show when it was merged</code><code>git merge bug-fix --ff-only # Only merge if fast forward will work</code></pre>
+  </section>
+  <section>
+    <h2>
+      Rebase
+    </h2>
+    <p>
+      “Re-write history"
+    </p>
+    <p>
+      Squash serval WIP commits into a single commit
+    </p>
+    <p>
+      Makes you look like you knew what you were doing all along!
+    </p>
+    <p>
+      Tidy up your commit logs!
+    </p>
+    <ul>
+      <small>
+        <li>
+          fixup, squash, reword, edit, and reorder!
+        </li>
+      </small>
+    </ul>
+    <pre class="bash"><code>git rebase master # rebase current branch onto master</code><code>git rebase -i HEAD~2 # rewrite the past 2 commits</code><code>git rebase -i master bug-fix # checkout bug-fix branch and rebase onto master</code><code>git pull --rebase # Like regular git pull but tries to rebase (no silly merge)</code><code>git rebase --abort # If anything goes wrong!</code></pre>
+  </section>
+  <section>
+    <h2>
+      Rebase
+    </h2>
+    <p>
+      Never do it on published (shared) branches
+    </p>
+    <img height="300px" src="http://media.giphy.com/media/xEpTspH9hGwHS/giphy.gif">
+  </section>
+</section>
+<section>
+  <section>
+    <h2>
+      Other Useful Commands
+    </h2>
+    <img height="400px" src="https://ccistudentcenterblog.files.wordpress.com/2013/09/github-ninja.jpg">
+  </section>
+  <section>
+    <h2>
+      Checkout
+    </h2>
+    <p>
+      Not just for moving between branches!
+    </p>
+    <p>
+      Grab a particular file from a commit
+    </p>
+    <pre class="bash"><code>git checkout master -- file.txt # Get contents of file.txt from master</code><code>git checkout -- . # discard all unstaged changes</code></pre>
+  </section>
+  <section>
+    <h2>
+      Cherry-pick
+    </h2>
+    <p>
+      Copy a commit to your branch
+    </p>
+    <pre class="bash"><code>git cherry-pick d310dd # Apply the commit with hash d310dd to your branch</code></pre>
+  </section>
+  <section>
+    <h2>
+      Stash
+    </h2>
+    <p>
+      The 'scratchpad'
+    </p>
+    <pre class="bash"><code>git stash # Saves changes to the stash</code><code>git stash pop # Applies the top most changes</code><code>git stash save "Not Ready" # Gives the stash a better name</code></pre>
+  </section>
+  <section>
+    <h2>
+      Magical -p operator
+    </h2>
+    <p>
+      View changes and split up large edits
+    </p>
+    <pre class="bash"><code>git add -p # Choose what parts (hunks) are added</code><code>git log -p # Show the log with the diffs</code><code>git stash -p # Like add for the stash</code><code>git show defab4 -p # Show the changes from commit defab4</code></pre>
+  </section>
+  <section>
+    <h2>
+      Reset Soft
+    </h2>
+    <p>
+      Sets the branch to a commit and all differences go to the index
+    </p>
+    <p>
+      Great way to 'undo' an unpublished commit
+    </p>
+    <pre class="bash"><code>git reset --soft HEAD~1 # Undo the previous commit and keep changes</code></pre>
+  </section>
+  <section>
+    <h2>
+      Reset Hard
+    </h2>
+    <p>
+      Sets the branch to a commit without preserving keeping the index
+    </p>
+    <pre class="bash"><code>git reset --hard HEAD~1 # Undo the previous commit and discard changes</code><code>git reset --hard def8ad # Reset the current branch to a commit</code></pre>
+  </section>
+  <section>
+    <h2>
+      Reflog
+    </h2>
+    <img height="300px" src="http://38.media.tumblr.com/409c1867f51a625386419af7b8d416cc/tumblr_n9srf9JBPA1rhuccro1_500.gif"> <pre class="bash"><code>git reflog # Can reset to any of the hashes</code></pre>
+  </section>
+</section>
+<section>
+  <h2>
+    Questions?
+  </h2>
+  <img height="400px" src="https://octodex.github.com/images/riddlocat.png">
+</section>
+<section>
+  <h2>
+    Useful Resources
+  </h2>
+  <p>
+    <a href="https://git-scm.com/book">Git-SCM Online Book</a>
+  </p>
+  <p>
+    <a href="https://try.github.io">Try Github (Interactive)</a>
+  </p>
+  <p>
+    <a href="http://nvie.com/posts/a-successful-git-branching-model/">GitFlow by Vincent Driessen</a>
+  </p>
+</section>
